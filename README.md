@@ -2,4 +2,4 @@
 
 ### Dashboard
 
-index.html is the homepage, all html files have links to the others.
+index.html is the homepage, so to run the dashboard just open index.html on your browser.
