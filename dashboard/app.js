@@ -29,16 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching data:', error));
 
     function calculateAQI(pm25, pm10) {
-        const AQI25_high = 300;
-        const AQI25_low = 20;
-        const PM25_high = 120;
-        const PM25_low = 15;
-      
-        const PM10_high = 350;
-        const PM10_low = 5;
+        let aqi25 = 50/30;
+        let tmp = pm25 % 30;
+        aqi25 *= tmp;
+        tmp = Math.floor(pm25/30);
+        tmp *= 50;
+        aqi25 += tmp;
 
-        const aqi25 = ((AQI25_high - AQI25_low) / (PM25_high - PM25_low)) * (pm25 - PM25_low) + AQI25_low;
-        const aqi10 = ((AQI25_high - AQI25_low) / (PM10_high - PM10_low)) * (pm10 - PM10_low) + AQI25_low;
+        let aqi10 = pm10 % 50;
+        tmp = Math.floor(pm10/50);
+        tmp *= 50;
+        aqi10 += tmp;
         console.log(aqi25, aqi10);
       
         aqi =  Math.max(aqi25, aqi10).toFixed(2);
@@ -48,8 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getAQIStatus(aqi) {
         if (aqi <= 50) return "Air Quality is Good!";
-        if (aqi <= 100) return "Air Quality is Moderate!";
-        if (aqi <= 150) return "Air Quality Could be Unhealthy for Sensitive Groups!";
-        return "Air Quality is Unhealthy!";
+        if (aqi <= 100) return "Air Quality is Satisfactory!";
+        if (aqi <= 200) return "Air Quality is Moderate!";
+        if (aqi <= 300) return "Air Quality is Poor!";
+        if (aqi <= 400) return "Air Quality is Very Poor!";
+        return "Air Quality is Severe!";
     }
 });
