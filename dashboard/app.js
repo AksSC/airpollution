@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             pm25 += 0.0046;
             pm10 *= 0.7457;
             pm10 += 1.1026;
+            pm25 = pm25.toFixed(2);
+            pm10 = pm10.toFixed(2);
+            temperature = temperature.toFixed(2);
 
             document.getElementById('pm25').textContent = pm25;
             document.getElementById('pm10').textContent = pm10;
