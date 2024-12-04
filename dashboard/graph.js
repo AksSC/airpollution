@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         },
                         y: {
-                            beginAtZero: true,
                             title: {
                                 display: true,
                                 text: label,
